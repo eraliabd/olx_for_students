@@ -3,7 +3,7 @@ import uuid
 
 from django.core.validators import RegexValidator
 from django.db import models
-from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
 
@@ -70,3 +70,31 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+
+APARTMENT, COURTYARD = (
+    'apartment', 'courtyard',
+)
+CONTRACT, NOCONTRACT = (
+    'contract', 'nocontract'
+)
+
+
+class House(models.Model):
+    HOUSE_TYPE = (
+        (APARTMENT, APARTMENT),
+        (COURTYARD, COURTYARD)
+    )
+    RENT_CONTRACT = (
+        (CONTRACT, CONTRACT),
+        (NOCONTRACT, NOCONTRACT)
+    )
+    rent_house = models.CharField(max_length=20, choices=HOUSE_TYPE)
+    rent_contract = models.CharField(max_length=20, choices=RENT_CONTRACT)
+    image = models.ImageField(upload_to='%Y/%m/%d')
+    price = models.PositiveBigIntegerField()
+    location = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title

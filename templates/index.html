@@ -2,8 +2,18 @@
 {% block title %}Home{% endblock title %}
 {% block content %}
     {% if user.is_authenticated %}
-        <h4>{{ user.phone_number }}, Xush kelibsiz! Bizni platformamizga</h4>
-        <p><a href="{% url 'logout' %}">Logout</a></p>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link active" href="{% url 'house' %}">Houses</a>
+                        <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <h4 class="mt-5">{{ user.full_name }}, Xush kelibsiz! Bizni platformamizga</h4>
     {% else %}
         <h3>Siz ro'yxatdan o'tmagansiz!</h3>
         <p><a href="{% url 'login' %}">Login</a></p>
