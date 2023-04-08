@@ -16,9 +16,21 @@
         </nav>
         <h4 class="mt-5">{{ user.full_name }}, Xush kelibsiz! Bizni platformamizga</h4>
     {% else %}
-        <h3>Siz ro'yxatdan o'tmagansiz!</h3>
-        <p><a href="{% url 'login' %}">Login</a></p>
-        <p><a href="{% url 'signup' %}">SignUp</a></p>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link active" href="{% url 'login' %}">Houses</a>
+                        <a class="nav-link active" href="{% url 'login' %}">Travels</a>
+                        <a class="nav-link active" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link active align-right" href="{% url 'signup' %}">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <h3 class="mt-5">Siz ro'yxatdan o'tmagansiz yoki saytga kirmagansiz!</h3>
+        <p class="">Saytga kirish uchun yuqoridagi Login yoki ro'yxatdan o'tish uchun SignUp tugmasini bosing!</p>
     {% endif %}
 {% endblock content %}
 </body>
