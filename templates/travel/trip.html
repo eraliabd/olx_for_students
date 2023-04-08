@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Trip{% endblock title %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link active" href="{% url 'travel' %}">Travels</a>
+                    <a class="nav-link active" href="{% url 'trip' %}">Trip</a>
+                    <a class="nav-link active" href="{% url 'library' %}">Library </a>
+                    <a class="nav-link active" href="{% url 'food' %}">Food</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="row mt-5 mb-5">
+        {% for trip in trips %}
+        <div class="col-sm-6">
+            <div class="card">
+                <img src="/media/{{ trip.image }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ trip.name | upper }}</h5>
+                    <p class="card-text mb-3">{{ trip.description }}</p>
+                    <h6 class="card-text">{{ trip.address }}</h6>
+                    <a href="#" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
