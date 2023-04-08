@@ -2,8 +2,13 @@ from django.shortcuts import render
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
-from .models import User, House
+from .models import House
+
+
+def login_required_decorator(func):
+    return login_required(func, login_url='account:login')
 
 
 class SignUpView(CreateView):
@@ -12,6 +17,7 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
 
 
+@login_required_decorator
 def house(request):
     houses = House.objects.all()
     courtyards = House.objects.filter(rent_house='courtyard')
@@ -24,6 +30,7 @@ def house(request):
     return render(request, 'house/house.html', context)
 
 
+@login_required_decorator
 def courtyard(request):
     courtyards = House.objects.filter(rent_house='courtyard')
 
@@ -33,6 +40,7 @@ def courtyard(request):
     return render(request, 'house/courtyard.html', context)
 
 
+@login_required_decorator
 def apartment(request):
     apartments = House.objects.filter(rent_house='apartment')
 
@@ -42,6 +50,7 @@ def apartment(request):
     return render(request, 'house/apartment.html', context)
 
 
+@login_required_decorator
 def contract(request):
     contracts = House.objects.filter(rent_contract='contract')
 
@@ -51,6 +60,7 @@ def contract(request):
     return render(request, 'house/contract.html', context)
 
 
+@login_required_decorator
 def nocontract(request):
     nocontracts = House.objects.filter(rent_contract='nocontract')
 
