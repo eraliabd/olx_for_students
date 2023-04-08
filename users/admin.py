@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, House
+from .models import User, House, Travel
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 
@@ -25,3 +25,13 @@ class HouseAdmin(admin.ModelAdmin):
 
 
 admin.site.register(House, HouseAdmin)
+
+
+class TravelAdmin(admin.ModelAdmin):
+    list_display = ('name', 'address')
+    list_display_links = ('name', 'address')
+    list_filter = ('name', )
+    search_fields = ('name', 'address')
+
+
+admin.site.register(Travel, TravelAdmin)

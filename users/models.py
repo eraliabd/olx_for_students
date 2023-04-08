@@ -100,5 +100,41 @@ class House(models.Model):
         return self.title
 
 
+TRIP, LIBRARY, FOOD = (
+    'trip', 'library', 'food'
+)
+
+
 class Travel(models.Model):
-    pass
+    TRAVEL_TYPE = (
+        (TRIP, TRIP),
+        (LIBRARY, LIBRARY),
+        (FOOD, FOOD),
+    )
+    name = models.CharField(max_length=255, choices=TRAVEL_TYPE)
+    description = models.TextField()
+    address = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='travel/%Y/%m/%d')
+
+    def __str__(self):
+        return self.name
+
+
+# class Library(models.Model):
+#     name = models.CharField(max_length=255)
+#     description = models.TextField()
+#     address = models.CharField(max_length=255)
+#     image = models.ImageField(upload_to='library/%Y/%m/%d')
+#
+#     def __str__(self):
+#         return self.name
+#
+#
+# class Food(models.Model):
+#     name = models.CharField(max_length=255)
+#     description = models.TextField()
+#     address = models.CharField(max_length=255)
+#     image = models.ImageField(upload_to='food/%Y/%m/%d')
+#
+#     def __str__(self):
+#         return self.name

@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
-from .models import House
+from .models import House, Travel
 
 
 def login_required_decorator(func):
@@ -68,3 +68,44 @@ def nocontract(request):
         "nocontracts": nocontracts,
     }
     return render(request, 'house/nocontract.html', context)
+
+
+# TRAVEL functions
+@login_required_decorator
+def travel(request):
+    travels = Travel.objects.all()
+
+    context = {
+        "travels": travels,
+    }
+    return render(request, 'travel/travel.html', context)
+
+
+@login_required_decorator
+def trip(request):
+    trips = Travel.objects.filter(name='trip')
+
+    context = {
+        "trips": trips,
+    }
+    return render(request, 'travel/trip.html', context)
+
+
+@login_required_decorator
+def library(request):
+    libraries = Travel.objects.filter(name='library')
+
+    context = {
+        "libraries": libraries,
+    }
+    return render(request, 'travel/library.html', context)
+
+
+@login_required_decorator
+def food(request):
+    foods = Travel.objects.filter(name='food')
+
+    context = {
+        "foods": foods,
+    }
+    return render(request, 'travel/food.html', context)
