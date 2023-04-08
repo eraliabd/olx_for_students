@@ -7,16 +7,19 @@ from .forms import CustomUserCreationForm
 from .models import House, Travel
 
 
+# custom required decorator
 def login_required_decorator(func):
     return login_required(func, login_url='account:login')
 
 
+# creating user
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
 
 
+# rent house functions
 @login_required_decorator
 def house(request):
     houses = House.objects.all()

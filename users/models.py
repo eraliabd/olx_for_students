@@ -71,6 +71,7 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
 
+# house model
 APARTMENT, COURTYARD = (
     'apartment', 'courtyard',
 )
@@ -100,6 +101,7 @@ class House(models.Model):
         return self.title
 
 
+# travel model
 TRIP, LIBRARY, FOOD = (
     'trip', 'library', 'food'
 )
@@ -118,23 +120,3 @@ class Travel(models.Model):
 
     def __str__(self):
         return self.name
-
-
-# class Library(models.Model):
-#     name = models.CharField(max_length=255)
-#     description = models.TextField()
-#     address = models.CharField(max_length=255)
-#     image = models.ImageField(upload_to='library/%Y/%m/%d')
-#
-#     def __str__(self):
-#         return self.name
-#
-#
-# class Food(models.Model):
-#     name = models.CharField(max_length=255)
-#     description = models.TextField()
-#     address = models.CharField(max_length=255)
-#     image = models.ImageField(upload_to='food/%Y/%m/%d')
-#
-#     def __str__(self):
-#         return self.name
